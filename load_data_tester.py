@@ -3,7 +3,7 @@ import unittest
 import load_data
 
 
-class TestLoadDataModule(unittest.TestCase):
+class TestLoadData(unittest.TestCase):
 	
 	def test_2001(self):
 		"""przypadek testowy dla ladowania danych z lat 2001-2018
