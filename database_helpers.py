@@ -46,7 +46,7 @@ class DatabaseReader:
 		self.file_name = file_name
 		self.data = self._load_data()
 		
-	def _load_data():
+	def _load_data(self):
 		with open(self.file_name, 'rb') as f:
 			data = pickle.load(f)
 		return data
