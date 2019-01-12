@@ -37,6 +37,19 @@ class DatabaseCreator:
 		with open(file_name, 'wb') as f:
 			pickle.dump(self.data, f)
 			f.close()
+
+class DatabaseReader:
+	"""Obiekt tej klasy przechowuje dane pobrane ze slownika pickle
+	Udostepnia tez metody umozliwiajace dostep do tych danych"""
+	
+	def __init__(self, file_name):
+		self.file_name = file_name
+		self.data = self._load_data()
+		
+	def _load_data():
+		with open(self.file_name, 'rb') as f:
+			data = pickle.load(f)
+		return data
 				
 if __name__ == '__main__':
 	database_creator = DatabaseCreator((2001, 2002, 2003), 424)
