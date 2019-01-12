@@ -50,7 +50,6 @@ class DatabaseReader:
 		with open(self.file_name, 'rb') as f:
 			data = pickle.load(f)
 		return data
-				
-if __name__ == '__main__':
-	database_creator = DatabaseCreator((2001, 2002, 2003), 424)
-	database_creator.save_to_file('data.pickle')
+	
+	def get_temperatures(self, date_ddmm):
+		return self.data[date_ddmm]
