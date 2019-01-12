@@ -40,8 +40,8 @@ class TestDatabaseReader(unittest.TestCase):
 		loaded_data = database_helpers.DatabaseReader('db_test.pickle').data
 		self.assertEqual(loaded_data['foo'], 1)
 		self.assertEqual(loaded_data['bar'], "fgsfds")
-		
-	def test_get_temperatures(self):
+	
+	def create_dummy_database(self):
 		test_entry =  DateEntry(2001, -2.5)
 		test_entry2 = DateEntry(2002, 2)
 		test_data = {"01/01":[test_entry,test_entry2],"05/05":[test_entry2]}
@@ -49,10 +49,17 @@ class TestDatabaseReader(unittest.TestCase):
 			pickle.dump(test_data, f)
 			f.close
 		test_database = database_helpers.DatabaseReader('db_test.pickle')
-		self.assertIn(test_entry, test_database.get_temperatures("01/01"))
-		self.assertIn(test_entry2, test_database.get_temperatures("05/05"))
+		return test_database
 		
+	def test_get_temperatures(self):
+		test_database = self.create_dummy_database()
+		self.assertIn(DateEntry(2001, -2.5), test_database.get_temperatures("01/01"))
+		self.assertIn(DateEntry(2002, 2), test_database.get_temperatures("05/05"))
+	
+	def test_get_temperature(self):
+		test_database = self.create_dummy_database()
+		self.assertEqual(-2.5, test_database.get_temperature("01/01/2001"))
+		self.assertEqual(2, test_database.get_temperature("05/05/2002"))
 		
 if __name__ == '__main__':
 	unittest.main()
-

@@ -52,4 +52,15 @@ class DatabaseReader:
 		return data
 	
 	def get_temperatures(self, date_ddmm):
+		'''metoda, ktora zwraca tablice obiektow typu namedtuple,
+		zawierajacych informacje o tym jaka temperatura byla
+		w poszczegolnych latach dnia, ktory zostal przekazany jako jej argument'''
 		return self.data[date_ddmm]
+	
+	def get_temperature(self, date_ddmmyyyy):
+		searched_year = int(date_ddmmyyyy[-4:])
+		searched_date_ddmm = date_ddmmyyyy[:5]
+		all_rows = self.get_temperatures(searched_date_ddmm)
+		for row in all_rows:
+			if row.year == searched_year: break;
+		return row.temperature
