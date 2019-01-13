@@ -23,8 +23,7 @@ class TemperatureData:
 		'''metoda tworzaca liste wierszy, pobranych z pliku csv,
 		ktory znajduje sie w archiwum w katalogu data'''
 
-		zip_file = zipfile.ZipFile(self.zip_path)
-		data = StringIO(zip_file.read(self.file_name).decode('ISO-8859-1'))
+		data = StringIO(self.zip_file.read(self.file_name).decode('ISO-8859-1'))
 		rows = csv.reader(data)
 		return rows
 	
@@ -35,7 +34,7 @@ class NewTemperatureData(TemperatureData):
 	def __init__(self, year, station_id):
 		self.zip_path = "data/{0}_{1}_s.zip".format(self.year, self.station_id)
 		self.file_name = "s_d_{0}_{1}.csv".format(self.station_id, self.year)
-
+		self.zip_file = zipfile.ZipFile(self.zip_path)
 		
 class OldTemperatureData(TemperatureData):
 	"""klasa obslugujaca archiwa z lat 1966-2000
@@ -44,10 +43,11 @@ class OldTemperatureData(TemperatureData):
 	def __init__(self, year, station_id):
 		self.zip_path = "data/{0}_{1}_{2}_s.zip".format(self.year, self.year + 4, self.station_id)
 		self.file_name = "s_d_{0}_{1}_{2}.csv".format(self.station_id, self.year, self.year + 4)
-
+		self.zip_file = zipfile.ZipFile(self.zip_path)
 	
 class TemperatureData1960(TemperatureData):
 	"""Klasa dla pliku 1960-1965, ktory jest wyjatkiem i obsluguje 6 lat, a nie 5"""
 	def __init__(self, year, station_id):
 		self.zip_path = "data/{0}_{1}_{2}_s.zip".format(self.year, self.year + 5, self.station_id)
 		self.file_name = "s_d_{0}_{1}_{2}.csv".format(self.station_id, self.year, self.year + 5)
+		self.zip_file = zipfile.ZipFile(self.zip_path)

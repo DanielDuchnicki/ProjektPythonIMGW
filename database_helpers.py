@@ -64,3 +64,19 @@ class DatabaseReader:
 		for row in all_rows:
 			if row.year == searched_year: break;
 		return row.temperature
+
+
+def create_database(station_id, storage_file_name):
+	"""Tworzy plik pickle z danymi dla stacji z argumentu station_id
+	Plik wynikowy ma nazwe taka, jak przekazano w storage_file_name"""
+	# Pliki z lat 1966-2000 sa pogrupowane w plikach po 5 lat
+	years = [1960, 1966, 1971, 1976, 1981, 1986, 1991, 1996]
+	# Od 2001 kazdy rok jest w osobnym pliku
+	for year in range(2001,2017):years.append(year);
+	creator = DatabaseCreator(years, station_id).savetofile(storage_file_name)
+
+if __name__ == '__main__':
+	#stworzenie pliku pickle (pseudo-bazy danych) z danymi dla Wroclawia
+	create_database(424, 'example_db.pickle')
+	#przyklady odczytania z tego pliku mozna znalezc w testach dla tego modulu
+	
