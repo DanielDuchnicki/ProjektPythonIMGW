@@ -3,15 +3,15 @@ import database_helpers
 
 #TODO: get real data from file
 
-'''Dummy data'''
-x = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]
-y1 = [2, 4, 3, 4, 1, 8, 2, 5, 3, 0]
-y2 = [20, 14, 13, 14, 10, 8, 20, 15, 13, 10]
-y3 = [-2, -4, -3, -4, -1, -8, -2, -5, -3, 0]
-y4 = [2, 14, 13, 4, 11, 18, 12, 5, 3, 10]
-
 def plot_first_days_of_seasons_trend():
     '''Tworzy wykresy teperatur w pierwsze dni pór roku: wiosna, lato, jesień i zima'''
+
+    '''Dummy data'''
+    x = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]
+    y1 = [2, 4, 3, 4, 1, 8, 2, 5, 3, 0]
+    y2 = [20, 14, 13, 14, 10, 8, 20, 15, 13, 10]
+    y3 = [-2, -4, -3, -4, -1, -8, -2, -5, -3, 0]
+    y4 = [2, 14, 13, 4, 11, 18, 12, 5, 3, 10]
 
     figure, axs = plt.subplots(ncols=2, nrows=2, constrained_layout=True)
 
@@ -44,4 +44,17 @@ def plot_first_days_of_seasons_trend():
 
     plt.show()
 
-plot_first_days_of_seasons_trend()
+def plot_weatherforcast():
+    '''Tworzy wykres przewidywanych teperatur na kolejne dwa dni'''
+
+    '''Dummy data'''
+    # Zakres od dzisiejszej daty + 2 dni do przodu
+    days = ["14/01", "15/01", "16/01"]
+    temperatures = [2, -1, 0]
+
+    plt.plot(days, temperatures, ':')
+    plt.title('Prognoza na najblższe dni')
+    plt.xlabel('Dzień')
+    plt.ylabel('Temperatura [C]')
+    plt.show()
+
