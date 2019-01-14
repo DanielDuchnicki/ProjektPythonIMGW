@@ -73,7 +73,7 @@ def create_database(station_id, storage_file_name):
 	years = [1960, 1966, 1971, 1976, 1981, 1986, 1991, 1996]
 	# Od 2001 kazdy rok jest w osobnym pliku
 	for year in range(2001,2017):years.append(year);
-	creator = DatabaseCreator(years, station_id).savetofile(storage_file_name)
+	DatabaseCreator(years, station_id).savetofile(storage_file_name)
 
 if __name__ == '__main__':
 	#stworzenie pliku pickle (pseudo-bazy danych) z danymi dla Wroclawia
