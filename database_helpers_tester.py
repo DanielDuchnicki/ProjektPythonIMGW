@@ -53,8 +53,8 @@ class TestDatabaseReader(unittest.TestCase):
 		
 	def test_get_temperatures(self):
 		test_database = self.create_dummy_database()
-		self.assertIn(DateEntry(2001, -2.5), test_database.get_temperatures("01/01"))
-		self.assertIn(DateEntry(2002, 2), test_database.get_temperatures("05/05"))
+		self.assertIn(2001, test_database.get_temperatures("01/01"))
+		self.assertIn(2002, test_database.get_temperatures("05/05"))
 	
 	def test_get_temperature(self):
 		test_database = self.create_dummy_database()

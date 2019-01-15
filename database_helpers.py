@@ -55,7 +55,12 @@ class DatabaseReader:
 		'''metoda, ktora zwraca tablice obiektow typu namedtuple,
 		zawierajacych informacje o tym jaka temperatura byla
 		w poszczegolnych latach dnia, ktory zostal przekazany jako jej argument'''
-		return self.data[date_ddmm]
+		data_dict = {}
+		for item in self.data[date_ddmm]:
+			year = item.year
+			temperature = item.temperature
+			data_dict[year] = temperature
+		return data_dict
 	
 	def get_temperature(self, date_ddmmyyyy):
 		searched_year = int(date_ddmmyyyy[-4:])
@@ -73,7 +78,7 @@ def create_database(station_id, storage_file_name):
 	years = [1960, 1966, 1971, 1976, 1981, 1986, 1991, 1996]
 	# Od 2001 kazdy rok jest w osobnym pliku
 	for year in range(2001,2017):years.append(year);
-	DatabaseCreator(years, station_id).savetofile(storage_file_name)
+	DatabaseCreator(years, station_id).save_to_file(storage_file_name)
 
 if __name__ == '__main__':
 	#stworzenie pliku pickle (pseudo-bazy danych) z danymi dla Wroclawia
