@@ -4,8 +4,14 @@ import count_temperature
 
 
 #Pobierz pliki ze strony, zaladuj do slownika dla stacji Wroclaw i zapisz w pliku storage.pickle
-print("Pobieram pliki...")
-download_files.download_files(424)
+while(True):
+    decision = input("Czy chcesz zaktualizować dane? (tak/nie)\n")
+    if decision.lower() == "tak":
+        print("Pobieram pliki...")
+        download_files.download_files(424)
+        break
+    elif decision.lower() == "nie":
+        break
 print("Wczytuje...")
 database_helpers.create_database(424, 'storage.pickle')
 print("Zapisane jako storage.pickle")
