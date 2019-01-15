@@ -1,6 +1,7 @@
 import download_files
 import database_helpers
 import count_temperature
+import plot
 
 
 #Pobierz pliki ze strony, zaladuj do slownika dla stacji Wroclaw i zapisz w pliku storage.pickle
@@ -26,7 +27,8 @@ print("- pierwszego dnia zimy: {0}".format(round(count_temperature.first_days_of
 print("Jutro przewidujemy {0} stopni, a pojutrze {1}\
 ".format(round(count_temperature.weather_forecast(temperatures_wroclaw)['tomorrow'],2),
          round(count_temperature.weather_forecast(temperatures_wroclaw)['day after tomorrow'],2)))
-
+print('Wykres')
+plot.plot_first_days_of_seasons_trend(temperatures_wroclaw)
 #I tak dalej... 
 #Raz zainicjowany obiekt temperatures_wroclaw jest przechowywany w pamieci
 #Mozemy sie odwolywac do jego metod temperatures_wroclaw.get_temperature(dd_mm_yyyy jako string)
