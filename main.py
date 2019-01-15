@@ -18,10 +18,14 @@ print("Zapisane jako storage.pickle")
 #Utworz obiekt przechowujacy dane pobrane z pliku storage i zwracajacy temperatury dla danych dat
 temperatures_wroclaw = database_helpers.DatabaseReader('storage.pickle')
 #Rob rzeczy na tym obiekcie
-print("Srednie temperatury pierwszego dnia wiosny, lata, jesieni i zimy \
- we Wroclawiu wynosza:{}".format(count_temperature.first_days_of_seasons(temperatures_wroclaw)))
+print('Srednie temperatury:')
+print("- pierwszego dnia wiosny: {0}".format(round(count_temperature.first_days_of_seasons(temperatures_wroclaw)['21/03'], 2)))
+print("- pierwszego dnia lata: {0}".format(round(count_temperature.first_days_of_seasons(temperatures_wroclaw)['22/06'], 2)))
+print("- pierwszego dnia jesieni: {0}".format(round(count_temperature.first_days_of_seasons(temperatures_wroclaw)['23/09'], 2)))
+print("- pierwszego dnia zimy: {0}".format(round(count_temperature.first_days_of_seasons(temperatures_wroclaw)['22/12'], 2)))
 print("Jutro przewidujemy {0} stopni, a pojutrze {1}\
-".format(count_temperature.weather_forecast(temperatures_wroclaw)['tomorrow'], count_temperature.weather_forecast(temperatures_wroclaw)['day after tomorrow']))
+".format(round(count_temperature.weather_forecast(temperatures_wroclaw)['tomorrow'],2),
+         round(count_temperature.weather_forecast(temperatures_wroclaw)['day after tomorrow'],2)))
 
 #I tak dalej... 
 #Raz zainicjowany obiekt temperatures_wroclaw jest przechowywany w pamieci
